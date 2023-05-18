@@ -1,0 +1,18 @@
+- remote_user: ec2-user
+  become: True
+  tasks:
+    - name: "Adding Amazon Linux Extras Nginx"
+      shell: |
+        set -o pipefail
+        yum update -y
+        amazon-linux-extras install nginx1 -y
+      args:
+        executable: /bin/bash
+    - name: Start Vault Server in Dev Mode
+      become: true
+      become_user: root
+      become_method: sudo
+      ansible.builtin.systemd:
+        enabled: true
+        state: started
+        name: nginx.service
