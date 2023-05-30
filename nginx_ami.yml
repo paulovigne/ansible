@@ -1,5 +1,6 @@
 - name: Install Nginx Server
   remote_user: ec2-user
+  hosts: "{{ target_host | default('all') }} "
   become: True
   tasks:
     - name: Adding Amazon Linux Extras Nginx
