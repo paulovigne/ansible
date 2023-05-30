@@ -1,5 +1,4 @@
 - name: Install Nginx Server
-  hosts: all
   remote_user: ec2-user
   become: True
   tasks:
